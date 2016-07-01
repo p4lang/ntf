@@ -49,14 +49,20 @@ sudo ./tools/bootstrap.py
 
 
 #### Running PTF tests
-We have provided a script that will help you run ptf tests once you've built and compiled the switch
+We have provided a script that will help you build and compile the switch to run ptf tests
 ```sh
 cd bmv2
 ./run_build_for_ptf.sh
 ```
 
-Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup (you can use [tools/veth_setup.sh])
+Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup (you can use [tools/veth_setup.sh]). Execute each of the below commands in separate windows
 
+```sh
+sudo ./bmv2/run_bm.sh
+sudo ./bmv2/run_drivers.sh
+sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir <SWITCH>/tests/ptf-tests/api-tests
+```
+SWITCH - Absoulte path of the cloned switch submodule
 
    [switch]: <https://github.com/barefootnetworks/switch.git>
    [p4-bmv2]: <https://github.com/barefootnetworks/p4l-bmv2.git>
