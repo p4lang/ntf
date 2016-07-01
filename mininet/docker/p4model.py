@@ -4,14 +4,14 @@ class BmDockerSwitch( DockerSwitch ):
     def __init__( self, name, model_dir=None, pcap_dump=False, **kwargs ):
         self.pcap_dump = pcap_dump
         if model_dir is None:
-            self.model_dir = '/p4factory/targets/switch/'
+            self.model_dir = '/ntf/targets/switch/'
         else:
             self.model_dir = model_dir
         DockerSwitch.__init__( self, name, **kwargs )
 
     def start( self, controllers ):
         # load the startup configuration
-        self.cmd( '/p4factory/tools/startv2.sh' )
+        self.cmd( '/ptf/tools/startv2.sh' )
 
         # start the model
         cmds = [ 'echo \"' ]

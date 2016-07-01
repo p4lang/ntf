@@ -44,7 +44,7 @@ def main(cli=0):
     h4 = net.addHost( 'h4', ip = '172.16.102.7/24', mac = '00:07:00:00:00:02' )
 
     # add switch
-    sw_model_dir = '/p4factory/targets/switch/'
+    sw_model_dir = '/ntf/targets/switch/'
     sw1_fs_map = []
     sw1_fs_map.append( [ os.getcwd() + '/' + 'configs/sw1/l3vi', '/configs' ] )
     sw1 = net.addSwitch( 'sw1', cls=BmDockerSwitch, image='p4dockerswitch',

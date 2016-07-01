@@ -128,7 +128,7 @@ class P4DockerSwitch(Switch):
                   swapi_port = None,
                   pcap_dump = False,
                   verbose = False,
-                  start_program = '/p4factory/tools/start.sh',
+                  start_program = '/ntf/tools/start.sh',
                   config_fs = None,
                   pps = 0,
                   qdepth = 0,
@@ -197,7 +197,7 @@ class P4DockerSwitch(Switch):
 
     def start( self, controllers ):
         print "Starting P4 docker switch", self.name
-        path = '/p4factory/targets/switch/behavioral-model'
+        path = '/ntf/targets/switch/behavioral-model'
         args = [ 'echo \"' +  path ]
         args.extend( ['--name', self.name] )
         args.extend( ['--dpid', self.dpid] )
@@ -213,11 +213,11 @@ class P4DockerSwitch(Switch):
         #args.append( '-t' )
         args.append( '--no-veth' )
         args.append( '>& /tmp/model.log &' )
-        args.append( '\" >> /p4factory/tools/bm_start.sh' )
+        args.append( '\" >> /ntf/tools/bm_start.sh' )
         self.cmd( args )
 
         bm_cmd = ['docker', 'exec', 'mininet-' + self.name,
-                  '/p4factory/tools/bm_start.sh' ]
+                  '/ntf/tools/bm_start.sh' ]
         bmp = subprocess.Popen( bm_cmd, stdin=subprocess.PIPE,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT, close_fds=False )
