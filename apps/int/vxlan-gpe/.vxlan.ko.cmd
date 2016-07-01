@@ -1,0 +1,1 @@
+cmd_/home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan.ko /home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan.o /home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan.mod.o

@@ -1,0 +1,4 @@
+0xc3bacdab	vxlan_sock_add	/home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan	EXPORT_SYMBOL_GPL
+0x43fa64b5	vxlan_xmit_skb	/home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan	EXPORT_SYMBOL_GPL
+0x47f35dd3	vxlan_get_rx_port	/home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan	EXPORT_SYMBOL_GPL
+0xc9e78af5	vxlan_sock_release	/home/vmint38/barefoot/ntf/apps/int/vxlan-gpe/vxlan	EXPORT_SYMBOL_GPL
