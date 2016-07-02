@@ -65,7 +65,7 @@ sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --te
 ```
 SWITCH - Absoulte path of the cloned switch submodule
 
-   [switch]: <https://github.com/barefootnetworks/switch.git>
-   [p4-bmv2]: <https://github.com/barefootnetworks/p4l-bmv2.git>
-   [p4c-bmv2]: <https://github.com/barefootnetworks/p4l-p4c-bmv2.git>i
+   [switch]: <https://github.com/p4lang/switch.git>
+   [p4-bmv2]: <https://github.com/p4lang/behavioral-model.git>
+   [p4c-bmv2]: <https://github.com/p4lang/p4c-bm.git>
    [tools/veth_setup.sh]: <https://github.com/p4lang/ntf/blob/master/tools/veth_setup.sh> 
