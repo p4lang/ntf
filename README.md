@@ -70,7 +70,9 @@ sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --te
 SWITCH - Absoulte path of the cloned switch submodule
 
 #### Running Reference Applications
-* Inband Network Telemetry : Set up instructions for the INT demo can be found [here]
+* Inband Network Telemetry : 
+
+	This is a reference implementation of the Inband Network Telemetry (from now called just "INT") specification, which allows programmable switches to embed telemetry information directly into data packets. Set up instructions for the INT demo can be found [here]
 
    [switch]: <https://github.com/p4lang/switch.git>
    [p4-bmv2]: <https://github.com/p4lang/behavioral-model.git>
