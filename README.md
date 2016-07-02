@@ -39,7 +39,7 @@ Logout and Log back in to activate new groups
 
 #### Other dependencies
 ```sh
-sudo apt-get install libnl-route-3-dev
+./install_deps.sh
 ```
 The below script is intended to set up an environment suitable for building and running P4 programs. This is optional if you just want to perform tests using the NTF repository.
 ```sh
