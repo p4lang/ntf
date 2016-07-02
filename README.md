@@ -58,6 +58,7 @@ cd bmv2
 Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup (you can use [tools/veth_setup.sh]). Execute each of the below commands in separate windows
 
 ```sh
+cd bmv2/build/switch
 sudo ./bmv2/run_bm.sh
 sudo ./bmv2/run_drivers.sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir <SWITCH>/tests/ptf-tests/api-tests
