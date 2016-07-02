@@ -17,7 +17,7 @@ cd ntf
 ```
 
 ## Important: Installing Submodule dependencies
-Find the steps to install the dependencies needed for the submodules [p4-bmv2], [p4c-bmv2], and [switch] from the embedded github links. You will find the submodules cloned in the parent directory of NTF repo. You 
+Find the steps to install the dependencies needed for the submodules [p4-bmv2], [p4c-bmv2], and [switch] from the embedded github links. You will find the submodules cloned in the parent directory of NTF repo. 
 
 ## NTF - Dependencies
 
@@ -70,10 +70,10 @@ sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --te
 SWITCH - Absoulte path of the cloned switch submodule
 
 #### Running Reference Applications
-[Inband Network Telemetry] : Set up instructions for the INT demo can be found here
+* Inband Network Telemetry : Set up instructions for the INT demo can be found [here]
 
    [switch]: <https://github.com/p4lang/switch.git>
    [p4-bmv2]: <https://github.com/p4lang/behavioral-model.git>
    [p4c-bmv2]: <https://github.com/p4lang/p4c-bm.git>
    [tools/veth_setup.sh]: <https://github.com/p4lang/ntf/blob/master/tools/veth_setup.sh>
-   [Inband Network Telemetry]: <https://github.com/p4lang/ntf/tree/master/apps/int> 
+   [here]: <https://github.com/p4lang/ntf/tree/master/apps/int> 
