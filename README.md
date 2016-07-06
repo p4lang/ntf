@@ -1,7 +1,7 @@
 NTF - Network Test Framework
 ===
 
-This repository contains sample mininet and docker infrastructure required to perform network tests on various applications on Behavioral Model version 2
+This repository contains sample mininet and docker infrastructure required to perform network tests on various applications on Behavioral Model version 2.
 
 The directory structure of NTF repository is shown below:
 
@@ -21,12 +21,13 @@ The directory structure of NTF repository is shown below:
         │   ├── docker                   Scripts for bmv2 docker support
         │   ├── int_cfg.py		         Helper script to simulate network for INT                   
         │   └── int_ref_topology.py      Mininet Script for INT 
+        ├── install_ntf_deps.sh		 Dependency install script
         └── tools                        Various setup scripts
 
 
 ## Important: Pulling Submodules required by NTF
 Two scripts are provided in this repo to manage the submodules needed.
-Script to pull the submodules
+Script to pull the submodules.
 ```sh
 cd ntf
 ./pull_submodules.sh
@@ -53,12 +54,12 @@ git checkout -b 2.2.1 2.2.1
 mininet/util/install.sh
 ```
 #### Docker
-Find below the steps to install docker
+Find below the steps to install docker.
 ```sh
 wget -qO- https://get.docker.com/ | sh
 sudo usermod -aG docker $(whoami)
 ```
-Logout and Log back in to activate new groups
+Logout and Log back in to activate new groups.
 
 #### Other dependencies
 ```sh
@@ -75,13 +76,13 @@ sudo ./tools/bootstrap.py
 
 
 #### Running PTF tests
-We have provided a script that will help you build and compile the switch to run ptf tests
+We have provided a script that will help you build and compile the switch to run ptf tests.
 ```sh
 cd ntf/bmv2
 ./run_build_for_ptf.sh
 ```
 
-Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup (you can use [tools/veth_setup.sh]). Execute each of the below commands in separate windows
+Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup, you can use [tools/veth_setup.sh]). Execute each of the sudo commands below in separate windows.
 
 ```sh
 cd ntf/bmv2/build/switch
@@ -89,12 +90,12 @@ sudo ./bmv2/run_bm.sh
 sudo ./bmv2/run_drivers.sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir <SWITCH>/tests/ptf-tests/api-tests
 ```
-SWITCH - Absoulte path of the cloned switch submodule
+**<SWITCH>** parameter is the absoulte path of the cloned switch submodule.
 
 #### Running Reference Applications
 * Inband Network Telemetry : 
 
-	This is a reference implementation of the Inband Network Telemetry (from now called just "INT") specification, which allows programmable switches to embed telemetry information directly into data packets. Set up instructions for the INT demo can be found [here]
+	This is a reference implementation of the Inband Network Telemetry (from now called just "INT") specification, which allows programmable switches to embed telemetry information directly into data packets. Set up instructions for the INT demo can be found [here].
 
    [switch]: <https://github.com/p4lang/switch.git>
    [p4-bmv2]: <https://github.com/p4lang/behavioral-model.git>
