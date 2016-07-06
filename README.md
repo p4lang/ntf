@@ -90,7 +90,8 @@ sudo ./bmv2/run_bm.sh
 sudo ./bmv2/run_drivers.sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir <SWITCH>/tests/ptf-tests/api-tests
 ```
-**<SWITCH>** parameter is the absoulte path of the cloned switch submodule.
+
+__<SWITCH>__ parameter is the absoulte path of the cloned switch submodule.
 
 #### Running Reference Applications
 * Inband Network Telemetry : 
