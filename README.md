@@ -5,10 +5,10 @@ This repository contains sample mininet and docker infrastructure required to pe
 
 The directory structure of NTF repository is shown below:
 
-    ─── ntf	                         Docker and Mininet Infrastructure framework
+    ─── ntf	                             Docker and Mininet Infrastructure framework
         ├── apps                         Reference applications
-        ├── bmv2			 Folder to run BMv2 model
-        │   ├── Makefile.bmv2		 Makefile to build and compile BMv2
+        ├── bmv2			             Folder to run BMv2 model
+        │   ├── Makefile.bmv2		     Makefile to build and compile BMv2
         │   ├── run_build_for_ptf.sh     Script to run PTF tests
         │   └── run_build_submodules.sh  Script to build and Compile BMv2
         ├── docker
@@ -19,7 +19,7 @@ The directory structure of NTF repository is shown below:
         │   └── docker.mk                makefile to specify docker target
         │── mininet                      Mininet scripts
         │   ├── docker                   Scripts for bmv2 docker support
-        │   ├── int_cfg.py		 Helper script to simulate network for INT                   
+        │   ├── int_cfg.py		         Helper script to simulate network for INT                   
         │   └── int_ref_topology.py      Mininet Script for INT 
         └── tools                        Various setup scripts
 
