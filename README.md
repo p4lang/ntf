@@ -67,12 +67,6 @@ cd ntf
 ./install_ntf_deps.sh
 sudo tools/veth_setup.sh
 ```
-The below script is intended to set up an environment suitable for building and running P4 programs. This is optional if you just want to perform tests using the NTF repository.
-```sh
-cd ntf
-sudo ./tools/bootstrap.py
-```
-
 
 
 #### Running PTF tests
