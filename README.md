@@ -3,6 +3,27 @@ NTF - Network Test Framework
 
 This repository contains sample mininet and docker infrastructure required to perform network tests on various applications on Behavioral Model version 2
 
+The directory structure of NTF repository is shown below:
+
+    ─── ntf	                         Docker and Mininet Infrastructure framework
+        ├── apps                         Reference applications
+        ├── bmv2			 Folder to run BMv2 model
+        │   ├── Makefile.bmv2		 Makefile to build and compile BMv2
+        │   ├── run_build_for_ptf.sh     Script to run PTF tests
+        │   └── run_build_submodules.sh  Script to build and Compile BMv2
+        ├── docker
+        │   ├── scripts                  Scripts to install dependencies inside docker
+        │   ├── DockerFile               Specify dependencies for docker image
+        │   └── startv2.sh               Script to setup CPU ports and front panel ports inside docker
+        ├── makefiles
+        │   └── docker.mk                makefile to specify docker target
+        │── mininet                      Mininet scripts
+        │   ├── docker                   Scripts for bmv2 docker support
+        │   ├── int_cfg.py		 Helper script to simulate network for INT                   
+        │   └── int_ref_topology.py      Mininet Script for INT 
+        └── tools                        Various setup scripts
+
+
 ## Important: Pulling Submodules required by NTF
 Two scripts are provided in this repo to manage the submodules needed.
 Script to pull the submodules
