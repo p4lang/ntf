@@ -88,15 +88,14 @@ Once everything has compiled, you can run the tests for switch.p4 (Make sure tha
 # in all three terminals
 cd ntf/bmv2/build/switch
 
-# terminal 1
+# terminal 1: run a switch model
 sudo ./bmv2/run_bm.sh
 
-# terminal 2
+# terminal 2: run switch driver, API server
 sudo ./bmv2/run_drivers.sh
 
-# terminal 3
-# __SWITCH__ parameter is the absoulte path of the cloned switch submodule.
-sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir SWITCH/tests/ptf-tests/api-tests
+# terminal 3: run PTF unit tests
+sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/api-tests
 ```
 
 #### Build and run for mininet applications
