@@ -99,7 +99,7 @@ sudo ./bmv2/run_drivers.sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir SWITCH/tests/ptf-tests/api-tests
 ```
 
-#### Running Reference Applications
+#### Build and run for mininet applications
 
 Another way to build and test p4 switch is running a mininet topology, in which each mininet switch is a docker container running a BMv2 model. We currently provide mininet scripts and docker files for an application called INT. Another application can be hosted in NTF. 
 
