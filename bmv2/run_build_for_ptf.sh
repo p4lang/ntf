@@ -1,4 +1,5 @@
-sdir=$(pwd)
+#!/bin/bash
+thisdir=$(pwd)
 WORKSPACE=$thisdir/../..
 TARGET=$thisdir/install
 BUILD_TARGET=$thisdir/build
