@@ -9,48 +9,27 @@ trap 'exit' ERR
 sudo apt-get update
 
 sudo apt-get install -y                  \
-    automake                             \
-    bison                                \
     doxygen                              \
     ethtool                              \
-    flex                                 \
-    g++                                  \
     git                                  \
     ipython                              \
     ipython-notebook                     \
     libany-moose-perl                    \
-    libboost-dev                         \
-    libboost-filesystem-dev              \
-    libboost-program-options-dev         \
-    libboost-system-dev                  \
-    libboost-test-dev                    \
-    libboost-thread-dev                  \
     libbsd-dev                           \
     libedit-dev                          \
-    libevent-dev                         \
-    libffi-dev                           \
     libfreetype6-dev                     \
-    libgmp-dev                           \
     libhiredis-dev                       \
-    libjudy-dev                          \
     libnl-route-3-dev                    \
-    libpcap-dev                          \
     libpng-dev                           \
-    libssl-dev                           \
-    libtool                              \
     libyaml-0-2                          \
     libbz2-dev                           \
-    mininet                              \
     openssl                              \
-    pkg-config                           \
-    python-dev                           \
     python-dpkt                          \
     python-jsonpickle                    \
     python-imaging-tk                    \
     python-matplotlib                    \
     python-nose python-numpy             \
     python-pandas                        \
-    python-pip                           \
     python-pygraph                       \
     python-pygraphviz                    \
     python-scipy                         \
@@ -62,9 +41,16 @@ sudo apt-get install -y                  \
     wireshark                            \
 # Do not remove this line!
 
-sudo pip install tenjin
 sudo pip install ctypesgen
 sudo pip install crc16
+
+cd $WORKSPACE/p4-bmv2
+echo "Installing p4-bmv2 dependencies"
+./install_deps.sh
+
+cd $WORKSPACE/p4c-bmv2
+echo "Installing p4c-bmv2 dependencies"
+sudo pip install -r requirements.txt
 
 cd $WORKSPACE
 
@@ -73,7 +59,6 @@ sudo apt-get remove python-scapy
 git clone https://github.com/p4lang/scapy-vxlan.git
 cd scapy-vxlan
 sudo python setup.py install
-sudo apt-get install libnl-route-3-dev
 
 cd $WORKSPACE
 wget http://archive.apache.org/dist/thrift/0.9.2/thrift-0.9.2.tar.gz
