@@ -1,7 +1,7 @@
 NTF - Network Test Framework
 ===
 
-This repository contains sample mininet and docker infrastructure required to perform network tests on various applications on Behavioral Model version 2.
+This repository contains sample mininet and docker infrastructure required to perform network-wide tests of various applications on Behavioral Model version 2.
 
 The directory structure of NTF repository is shown below:
 
@@ -21,11 +21,13 @@ The directory structure of NTF repository is shown below:
         │   ├── docker                   Scripts for bmv2 docker support
         │   ├── int_cfg.py		         Helper script to simulate network for INT                   
         │   └── int_ref_topology.py      Mininet Script for INT 
+        ├── pull_submodules.sh		 script that clones required modules
+        ├── update_submodules.sh	 script that updates requires modules
         ├── install_ntf_deps.sh		 Dependency install script
         └── tools                        Various setup scripts
 
 
-## Important: Pulling Submodules required by NTF
+## Pulling modules required by NTF
 Two scripts are provided in this repo to manage the submodules needed.
 Script to pull the submodules.
 ```sh
@@ -38,11 +40,19 @@ cd ntf
 ./update_submodules.sh
 ```
 
-## Important: Installing Submodule dependencies
-Find the steps to install the dependencies needed for the submodules [p4-bmv2], [p4c-bmv2], and [switch] from the embedded github links. You will find the submodules cloned in the parent directory of NTF repo. 
+## Installing module dependencies
+Below steps install the dependencies needed for the modules [p4-bmv2], [p4c-bmv2], and [switch]. You can find the modules cloned in the parent directory of NTF repo. 
 
-## NTF - Dependencies
+```sh
+cd ntf
+./install_ntf_deps.sh
+```
 
+#### veth setup (needed after rebooting of the test machine)
+```sh
+cd ntf
+sudo tools/veth_setup.sh
+```
 
 #### Mininet
 Find below the steps to install mininet. These can be installed in any user desired path.
@@ -61,34 +71,39 @@ sudo usermod -aG docker $(whoami)
 ```
 Logout and Log back in to activate new groups.
 
-#### Other dependencies
-```sh
-cd ntf
-./install_ntf_deps.sh
-sudo tools/veth_setup.sh
-```
+## Build and test
 
+NTF currently supports two different ways of building and running p4 switch: first is to run PTF (Packet Test Framework) test on BMv2. 
 
-#### Running PTF tests
+#### Build and run PTF tests
 We have provided a script that will help you build and compile the switch to run ptf tests.
 ```sh
 cd ntf/bmv2
 ./run_build_for_ptf.sh
 ```
 
-Once everything has compiled, you can run the tests for switch.p4 (Please make sure that you have all the necessary veth pairs setup, you can use [tools/veth_setup.sh]). Execute each of the sudo commands below in separate windows.
+Once everything has compiled, you can run the tests for switch.p4 (Make sure that you have all the necessary veth pairs setup by running [tools/veth_setup.sh]). Execute each of the sudo commands below in three separate terminals.
 
 ```sh
+# in all three terminals
 cd ntf/bmv2/build/switch
+
+# terminal 1
 sudo ./bmv2/run_bm.sh
+
+# terminal 2
 sudo ./bmv2/run_drivers.sh
+
+# terminal 3
+# __SWITCH__ parameter is the absoulte path of the cloned switch submodule.
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir SWITCH/tests/ptf-tests/api-tests
 ```
 
-__SWITCH__ parameter is the absoulte path of the cloned switch submodule.
-
 #### Running Reference Applications
-* Inband Network Telemetry : 
+
+Another way to build and test p4 switch is running a mininet topology, in which each mininet switch is a docker container running a BMv2 model. We currently provide mininet scripts and docker files for an application called INT. Another application can be hosted in NTF. 
+
+* INT (Inband Network Telemetry) : 
 
 	This is a reference implementation of the Inband Network Telemetry (from now called just "INT") specification, which allows programmable switches to embed telemetry information directly into data packets. Set up instructions for the INT demo can be found [here].
 
