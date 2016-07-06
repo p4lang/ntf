@@ -88,10 +88,10 @@ Once everything has compiled, you can run the tests for switch.p4 (Please make s
 cd ntf/bmv2/build/switch
 sudo ./bmv2/run_bm.sh
 sudo ./bmv2/run_drivers.sh
-sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir <SWITCH>/tests/ptf-tests/api-tests
+sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir SWITCH/tests/ptf-tests/api-tests
 ```
 
-__<SWITCH>__ parameter is the absoulte path of the cloned switch submodule.
+__SWITCH__ parameter is the absoulte path of the cloned switch submodule.
 
 #### Running Reference Applications
 * Inband Network Telemetry : 
