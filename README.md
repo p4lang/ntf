@@ -21,23 +21,23 @@ The directory structure of NTF repository is shown below:
         │   ├── docker                   Scripts for bmv2 docker support
         │   ├── int_cfg.py		         Helper script to simulate network for INT                   
         │   └── int_ref_topology.py      Mininet Script for INT 
-        ├── pull_submodules.sh		   script that clones required modules
-        ├── update_submodules.sh	       script that updates requires modules
+        ├── pull_modules.sh		   script that clones required modules
+        ├── update_modules.sh	       script that updates requires modules
         ├── install_ntf_deps.sh		   Dependency install script
         └── tools                        Various setup scripts
 
 
 ## Pulling modules required by NTF
-Two scripts are provided in this repo to manage the submodules needed.
-Script to pull the submodules.
+Two scripts are provided in this repo to manage the modules needed.
+Script to pull the modules.
 ```sh
 cd ntf
-./pull_submodules.sh
+./pull_modules.sh
 ```
-Script to update the submodules
+Script to update the modules
 ```sh
 cd ntf
-./update_submodules.sh
+./update_modules.sh
 ```
 
 ## Installing module dependencies
