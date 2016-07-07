@@ -22,16 +22,6 @@ Setting up the environment
             sudo pip3 install scapy-python3
             sudo pip3 install websockets 
 
-* Build submodules
-
-        cd ntf/bmv2
-        ./run_build_submodules.sh
-
-* Build a docker image for the switch
-
-        cd ntf/makefiles
-        make -f docker.mk bmv2-docker-image
-
 * Build and install the VXLAN-GPE driver provided in the repo
 
         cd ntf/apps/int/vxlan-gpe
@@ -43,6 +33,9 @@ Setting up the environment
         lsmod | grep vxlan     # - this should list vxlan as one of the loaded modules
         dmesg | grep "VXLAN-GPE"  # - this will show "Loading VXLAN-GPE driver"
 
+* Build a docker image that contains BMv2 switch and driver.
+
+Follow the instructions in NTF [README](https://github.com/p4lang/ntf/blob/master/README.md). You can skip the steps for building and runnning PTF tests, which are optional. The PTF units tests are to verify the sanity of P4 and driver codes. 
 
 Running the reference application
 =================================
