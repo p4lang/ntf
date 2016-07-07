@@ -97,6 +97,13 @@ sudo ./bmv2/run_drivers.sh
 
 # terminal 3: run PTF unit tests
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/api-tests
+sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/pd-tests
+```
+
+Note that some PTF tests can occasionally fail due to statistical nature of them. You can re-run the failed test by specifying the test name at the end of the command as below, re-run multiple times, and check if the test passes in one of multiple runs.
+
+```sh
+sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/api-tests switch.L2LagFloodTest
 ```
 
 #### Build docker image 
