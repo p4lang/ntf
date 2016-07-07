@@ -29,26 +29,27 @@ The directory structure of NTF repository is shown below:
 
 ## Pulling modules required by NTF
 Two scripts are provided in this repo to manage the modules needed.
-Script to pull the modules.
+Script to clone the modules.
 ```sh
 cd ntf
 ./pull_modules.sh
 ```
-Script to update the modules
+
+If you need to update the modules that have been previously cloned,
 ```sh
 cd ntf
 ./update_modules.sh
 ```
 
 ## Installing module dependencies
-Below steps install the dependencies needed for the modules [p4-bmv2], [p4c-bmv2], and [switch]. You can find the modules cloned in the parent directory of NTF repo. 
+Below script installs the dependencies needed for the modules [p4-bmv2], [p4c-bmv2], and [switch]. You can find the modules in the parent directory of NTF repo, cloned by pull_modules.sh.
 
 ```sh
 cd ntf
 ./install_ntf_deps.sh
 ```
 
-#### veth setup (needed after rebooting of the test machine)
+#### veth setup, needed after every (re)-booting of the test machine
 ```sh
 cd ntf
 sudo tools/veth_setup.sh
@@ -100,7 +101,7 @@ sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --te
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/pd-tests
 ```
 
-Note that some PTF tests can occasionally fail due to statistical nature of them. You can re-run the failed test by specifying the test name at the end of the command as below, re-run multiple times, and check if the test passes in one of multiple runs.
+NOTE: some PTF tests can occasionally fail due to statistical nature of them. You can re-run the failed test by specifying the test name at the end of the command as below, re-run a few times, and check if the test passes in one of the multiple runs.
 
 ```sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/api-tests switch.L2LagFloodTest
