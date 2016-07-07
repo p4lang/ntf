@@ -39,7 +39,3 @@ mkdir -p $BUILD_TARGET/switch
 cd $BUILD_TARGET/switch
 $SUBMODULE/configure --with-bmv2 --with-switchsai --enable-thrift --prefix=$TARGET
 make
-
-echo "Veth setup ..."
-sudo $thisdir/../tools/veth_setup.sh
-~                                      

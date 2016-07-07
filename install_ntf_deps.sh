@@ -8,6 +8,14 @@ trap 'exit' ERR
 
 sudo apt-get update
 
+cd $WORKSPACE/p4-bmv2
+echo "Installing p4-bmv2 dependencies"
+./install_deps.sh
+
+cd $WORKSPACE/p4c-bmv2
+echo "Installing p4c-bmv2 dependencies"
+sudo pip install -r requirements.txt
+
 sudo apt-get install -y                  \
     doxygen                              \
     ethtool                              \
@@ -43,14 +51,6 @@ sudo apt-get install -y                  \
 
 sudo pip install ctypesgen
 sudo pip install crc16
-
-cd $WORKSPACE/p4-bmv2
-echo "Installing p4-bmv2 dependencies"
-./install_deps.sh
-
-cd $WORKSPACE/p4c-bmv2
-echo "Installing p4c-bmv2 dependencies"
-sudo pip install -r requirements.txt
 
 cd $WORKSPACE
 
