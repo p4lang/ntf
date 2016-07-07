@@ -20,7 +20,7 @@ echo "Updating switch ..."
 cd $WORKSPACE/switch
 git pull
 
-echo "Updating switch ..."
+echo "Updating scapy-vxlan ..."
 cd $WORKSPACE/scapy-vxlan
 git pull
 sudo python setup.py install
