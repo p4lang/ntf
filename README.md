@@ -73,16 +73,17 @@ Logout and Log back in to activate new groups.
 
 ## Build and test
 
-NTF currently supports two different ways of building and running p4 switch: first is to run PTF (Packet Test Framework) test on BMv2. 
+NTF currently supports two different ways of building and running p4 switch. 
 
 #### Build and run PTF tests
-We have provided a script that will help you build and compile the switch to run ptf tests.
+The first is to run PTF (Packet Test Framework) test on BMv2 switch running on the same host machine. We provide a script that will help you build and compile the switch to run ptf tests.
+
 ```sh
 cd ntf/bmv2
 ./run_build_for_ptf.sh
 ```
 
-Once everything has compiled, you can run the tests for switch.p4 (Make sure that you have all the necessary veth pairs setup by running [tools/veth_setup.sh]). Execute each of the sudo commands below in three separate terminals.
+Once everything has compiled via the script, you can run the tests for switch.p4 (make sure that you have all the necessary veth pairs setup by running [tools/veth_setup.sh]). Execute each of the sudo commands below in three separate terminals.
 
 ```sh
 # in all three terminals
@@ -98,9 +99,25 @@ sudo ./bmv2/run_drivers.sh
 sudo PYTHONPATH=$PYTHONPATH:../ptf/lib.linux-x86_64-2.7 ./bmv2/run_tests.sh --test-dir ../../../../switch/tests/ptf-tests/api-tests
 ```
 
-#### Build and run for mininet applications
+#### Build docker image 
 
-Another way to build and test p4 switch is running a mininet topology, in which each mininet switch is a docker container running a BMv2 model. We currently provide mininet scripts and docker files for an application called INT. Another application can be hosted in NTF. 
+Another way is to launch a docker container that internally runs BMv2 switch, driver and API server. Linux networking can be used to configure and control the switch. See [switchlink](https://github.com/p4lang/switch/blob/master/switchlink/README.md) to understand how it works.   
+
+* Build submodules for docker build
+
+```sh
+cd ntf/bmv2
+./run_build_submodules.sh
+```
+
+* Build a docker image
+
+```sh
+cd ntf/makefiles
+make -f docker.mk bmv2-docker-image
+```
+
+The docker containers can be launched by mininet, which eventually creates a complex network topology of switches and hosts. Each mininet switch is a docker container running a BMv2 model. We currently provide mininet scripts that consume the docker image and creates a topology of switches and hosts running an application called INT. 
 
 * INT (Inband Network Telemetry) : 
 
