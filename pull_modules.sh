@@ -29,7 +29,7 @@ cd $WORKSPACE
 echo "Cloning switch ..."
 git clone https://github.com/barefootnetworks/switch-int-demo.git switch
 cd $WORKSPACE/switch
-git checkout bf8aa22810defc4801d3a1d6119254e9c5ddb937
+git checkout int_geneve_demo
 
 cd $WORKSPACE
 echo "Cloning scapy-vxlan ..."
