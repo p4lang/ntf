@@ -138,4 +138,4 @@ The docker containers can be launched by mininet, which eventually creates a com
    [p4c-bmv2]: <https://github.com/p4lang/p4c-bm.git>
    [tools/veth_setup.sh]: <https://github.com/p4lang/ntf/blob/master/tools/veth_setup.sh>
    [here]: <https://github.com/p4lang/ntf/tree/master/apps/int> 
-   [ubuntu-14.04.3-desktop-amd64.iso]: <http://mirror.metrocast.net/ubuntu-releases/14.04/ubuntu-14.04.3-desktop-amd64.iso>
+   [ubuntu-14.04.3-desktop-amd64.iso]: <http://old-releases.ubuntu.com/releases/14.04.3/>
