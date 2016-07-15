@@ -26,6 +26,8 @@ The directory structure of NTF repository is shown below:
         ├── install_ntf_deps.sh		   Dependency install script
         └── tools                        Various setup scripts
 
+## Ubuntu Image
+The ubuntu image that we use for our testing can be found here - [ubuntu-14.04.3-desktop-amd64.iso]
 
 ## Pulling modules required by NTF
 Two scripts are provided in this repo to manage the modules needed.
@@ -135,3 +137,4 @@ The docker containers can be launched by mininet, which eventually creates a com
    [p4c-bmv2]: <https://github.com/p4lang/p4c-bm.git>
    [tools/veth_setup.sh]: <https://github.com/p4lang/ntf/blob/master/tools/veth_setup.sh>
    [here]: <https://github.com/p4lang/ntf/tree/master/apps/int> 
+   [ubuntu-14.04.3-desktop-amd64.iso]: <http://mirror.metrocast.net/ubuntu-releases/14.04/ubuntu-14.04.3-desktop-amd64.iso>
