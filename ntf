@@ -1,0 +1,176 @@
+##############################################################################
+# Copyright 2013-present Barefoot Networks, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+##############################################################################
+###############################################################################
+
+"""
+NTF Network Test Framework
+"""
+
+import argparse
+import imp
+import logging
+import os
+import unittest
+
+from ntf import config
+from ntf import parse
+
+
+class TopologyAction(argparse.Action):
+    """
+    class TopologyAction
+        Validate topology file
+    """
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        # Parse --topology
+        if not os.path.isfile(values):
+            parser.error("Invalid value for --topology: file %s does \
+                          not exist" % values)
+        setattr(namespace, self.dest, values)
+
+
+class ConfigAction(argparse.Action):
+    """
+    class ConfigAction
+        Validate config file
+    """
+    def __call__(self, parser, namespace, values, option_string=None):
+        # Parse --config
+        if not os.path.isfile(values):
+            parser.error("Invalid value for --config: file %s does \
+                         not exist" % values)
+        setattr(namespace, self.dest, values)
+
+
+class TestDirAction(argparse.Action):
+    """
+    class TestDirAction
+        Validate test directory
+    """
+    def __call__(self, parser, namespace, values, option_string=None):
+        # Parse --test-dir
+        if not os.path.isdir(values):
+            parser.error("Invalid value for --test-dir: dir %s does \
+                         not exist" % values)
+        setattr(namespace, self.dest, values)
+
+usage = "usage: ntf --topology topology_file --config configfile \
+         --test-dir test_dir --test test_name"
+
+parser = argparse.ArgumentParser(version="ntf 0.1",
+                                 usage=usage)
+
+group = parser.add_argument_group("NTF selection options")
+group.add_argument("--topology", type=str, action=TopologyAction,
+                   required=True, help="topology file")
+group.add_argument("--config", type=str, action=ConfigAction,
+                   required=True, help="config file")
+group.add_argument("--test-dir", type=str, action=TestDirAction,
+                   required=True, help="directory of tests")
+group.add_argument("--test", type=str, default="", required=False,
+                   help="name of test")
+group.add_argument("--cli", required=False, action="store_true",
+                   help="enable CLI mode")
+group.add_argument("--log-dir", type=str, default="", required=False,
+                   help="path to write logfile")
+group.add_argument("--log-file", type=str, default="", required=False,
+                   help="logfile name")
+
+
+def log_setup(config):
+    """
+    Setup logging
+    """
+
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
+
+    filename = ""
+    if config["log_file"] != "":
+        filename = config["log_file"]
+    else:
+        filename = "ntf.log"
+
+    if config["log_dir"] != "":
+        filename = os.path.join(config["log_dir"], filename)
+
+    filehandler = logging.FileHandler(filename, mode='w')
+    formatter = logging.Formatter('%(asctime)s - %(name)s - \
+                                  %(levelname)s - %(message)s')
+    filehandler.setFormatter(formatter)
+
+    logger.addHandler(filehandler)
+
+
+def load_tests(config):
+    suite = unittest.TestSuite()
+    test_modules = [filename.replace('.py', '') for filename in
+                    os.listdir(config["test_dir"]) if filename.endswith('.py')]
+    for i in test_modules:
+        mod = imp.load_module(i, *imp.find_module(i, [config["test_dir"]]))
+        if config["test"] == "":
+            suite.addTest(unittest.TestLoader().
+                          loadTestsFromModule(mod, use_load_tests=False))
+        else:
+            suite.addTest(unittest.TestLoader().
+                          loadTestsFromName(config["test"], mod))
+
+    return suite
+
+if __name__ == "__main__":
+
+    args = parser.parse_args()
+
+    config["log_dir"] = args.log_dir
+    config["log_file"] = args.log_file
+    config["topology"] = args.topology
+    config["config"] = args.config
+    config["test_dir"] = args.test_dir
+    config["test"] = args.test
+    config["cli"] = args.cli
+
+    log_setup(config)
+
+    logging.info("NTF Log")
+    logging.getLogger().setLevel(logging.DEBUG)
+
+    logging.info(config)
+
+    logging.info("load the given test from the %s" % config["test_dir"])
+    test_suite = load_tests(config)
+    logging.info(test_suite)
+
+    configobj = parse.Config(config["config"])
+    topologyobj = parse.Topology(config["topology"])
+    deployobj = parse.Deploy(topologyobj, configobj)
+
+    logging.info("DEPLOYING HOSTS ----------")
+    deployobj.deploy_hosts()
+    logging.info("DEPLOYING SWITCHES ----------")
+    deployobj.deploy_switches()
+    logging.info("ADDING LINKS ----------")
+    deployobj.add_links()
+    config['net'] = deployobj.get_net()
+    logging.info("STARTING NET ----------")
+    deployobj.start_net()
+
+    logging.info("RUNNING TESTS ------------")
+    runner = unittest.TextTestRunner(verbosity=2)
+    result = runner.run(test_suite)
+    logging.info(result)
+    logging.info("STOPPING NET ------------")
+    deployobj.stop_net()
