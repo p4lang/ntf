@@ -113,7 +113,12 @@ class Deploy(object):
                         image = sinfo["name"]
                         cls = P4DockerSwitch
                         for mvol, vol in sinfo["mounts"].iteritems():
-                            fs_map.append([mvol, vol])
+                            # check that the mvol path exists
+                            if os.path.isdir(mvol):
+                                fs_map.append([mvol, vol])
+                            else:
+                                raise Exception("Volume %s does not exist"
+                                                % mvol)
                 elif name == "configs":
                     for mport, port in value["port_map"].iteritems():
                         port_map.append([int(mport), int(port)])
@@ -167,12 +172,8 @@ class Deploy(object):
             logging.info(dev2.cmd('ifconfig'))
             logging.info("********")
             if dev1 != "" and dev2 != "":
-                if StrictVersion(VERSION) <= StrictVersion('2.2.0'):
-                    self.net.addLink(dev1, dev2, port1=int(port1),
-                                     port2=int(port2))
-                else:
-                    self.net.addLink(dev1, dev2, port1=int(port1),
-                                     port2=int(port2), fast=False)
+                self.net.addLink(dev1, dev2, port1=int(port1),
+                                 port2=int(port2), fast=False)
             logging.info(dev1.cmd('ifconfig'))
             logging.info(dev2.cmd('ifconfig'))
 
